@@ -21,7 +21,7 @@ def get_type_hand(hand: Hand) -> PokerHand:
         return PokerHand.THREE_EQUAL
     elif is_two_pair(hand):
         return PokerHand.TWO_PAIR
-    elif is_pair(hand):
+    elif has_pair(hand):
         return PokerHand.PAIR
     else:
         return PokerHand.HIGH_CARD
@@ -292,20 +292,11 @@ def get_smaller_value_from_paired_hand(hand: Hand) -> int:
 #     return min(pair_values)
 
 
-def is_pair(hand: Hand) -> bool:  # a better name is 'has_pair'...
+def has_pair(hand: Hand) -> bool:
     for card in hand.get_cards()[::2]:
         if count(hand, card) == 2:
             return True
     return False
-
-# def isPair(hand):  # if the hand received isn't ordered, use this
-#     cards_value = list()
-#     for card in hand:
-#         cards_value.append(card.value)
-#     for i in range(4):
-#         if cards_value.count(cards_value[i]) == 2:
-#             return True
-#     return False
 
 
 # def getKicker(hand):  # if the hand received is ordered, use this

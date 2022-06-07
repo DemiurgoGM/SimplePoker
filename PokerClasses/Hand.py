@@ -1,3 +1,4 @@
+from typing import Iterator
 
 from PokerClasses.Card import Card
 
@@ -19,7 +20,7 @@ class Hand:
         self.cards.append(card)
 
     def get_cards(self) -> list[Card]:
-        self.cards.sort()
+        self.sort()
         return self.cards
 
     def sort(self) -> None:
@@ -31,11 +32,29 @@ class Hand:
     def __setitem__(self, key: int, value: Card) -> None:
         self.cards[key] = value
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.__repr__())
+
+    def __iter__(self) -> Iterator:
+        return iter(self.cards)
 
     def get_cards_values(self) -> list[int]:
         return [x.value for x in self.cards]
+
+    def abbr(self) -> str:
+        from Functions.UtilsFuncs import order_abbr
+        c1 = self.cards[0]
+        c2 = self.cards[1]
+        if c1.suit == c2.suit:
+            suit = 's'
+        elif c1.value == c2.value:
+            suit = ''
+        else:
+            suit = 'o'
+        c1 = c1.abbr()
+        c2 = c2.abbr()
+        c = order_abbr(c1, c2)
+        return c + suit

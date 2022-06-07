@@ -1,10 +1,10 @@
 
-from enum import Enum
+from enum import Enum, auto, unique
 
 
+@unique
 class Suit(Enum):
-    # Odds = red, even = black
-    Hearts = 1
-    Clubs = 2
-    Diamonds = 3
-    Spades = 4
+    Hearts = auto()
+    Clubs = auto()
+    Diamonds = auto()
+    Spades = auto()

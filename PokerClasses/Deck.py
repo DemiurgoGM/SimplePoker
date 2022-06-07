@@ -24,6 +24,9 @@ class Deck:
     def __setitem__(self, key: int, value: Card) -> None:
         self.cards_list[key] = value
 
+    def __iter__(self):
+        return self.cards_list.__iter__()
+
     def get_n_cards(self, n: int) -> list[Card]:
         n_cards = list()
         for _ in range(n):
